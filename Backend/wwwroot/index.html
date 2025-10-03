@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .videos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        video {
+            width: 100%;
+            background: #000;
+            border-radius: 8px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: #0084ff;
+            color: white;
+        }
+        .btn-success {
+            background: #00c851;
+            color: white;
+        }
+        .btn-danger {
+            background: #ff4444;
+            color: white;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .status {
+            padding: 15px;
+            background: #2d2d2d;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #2d2d2d;
+            color: white;
+            flex: 1;
+            min-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📹 WebRTC Video Chat</h1>
+        
+        <div class="status">
+            <strong>Durum:</strong> <span id="status">Başlamaya hazır</span><br>
+            <strong>Kullanıcı ID:</strong> <span id="userId">-</span>
+        </div>
+
+        <div class="controls">
+            <button class="btn-primary" id="startCamBtn" onclick="startCamera()">1. Kamerayı Aç</button>
+            
+            <input type="text" id="serverUrl" placeholder="SignalR Server URL" value="https://5bffd84ee8d3.ngrok-free.app/videochat">
+            
+            <button class="btn-primary" id="connectBtn" onclick="connect()" disabled>2. Sunucuya Bağlan</button>
+            
+            <input type="text" id="targetUserId" placeholder="Hedef Kullanıcı ID">
+            
+            <button class="btn-success" id="callBtn" onclick="startCall()" disabled>3. Ara</button>
+            
+            <button class="btn-danger" id="endBtn" onclick="endCall()" disabled>Sonlandır</button>
+        </div>
+
+        <div class="videos">
+            <div>
+                <h3>Yerel Video</h3>
+                <video id="localVideo" autoplay muted playsinline></video>
+            </div>
+            <div>
+                <h3>Uzak Video</h3>
+                <video id="remoteVideo" autoplay playsinline></video>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let connection;
+        let localStream;
+        let peerConnection;
+        let targetUser;
+
+        const config = {
+            iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' },
+                { urls: 'stun:stun1.l.google.com:19302' }
+            ]
+        };
+        
+        // YENİ FONKSİYON: Kullanıcının kamera iznini almak için
+        async function startCamera() {
+            updateStatus("Kamera izni isteniyor...");
+            if (await initLocalStream()) {
+                document.getElementById('startCamBtn').disabled = true;
+                document.getElementById('connectBtn').disabled = false;
+            }
+        }
+
+        async function connect() {
+            const serverUrl = document.getElementById('serverUrl').value;
+            
+            connection = new signalR.HubConnectionBuilder()
+                .withUrl(serverUrl)
+                .withAutomaticReconnect()
+                .build();
+
+            connection.on("IncomingCall", async (callerId) => {
+                updateStatus(`${callerId} arıyor...`);
+                if (confirm(`${callerId} sizi arıyor. Kabul et?`)) {
+                    targetUser = callerId;
+                    await connection.invoke("AnswerCall", callerId);
+                }
+            });
+
+            connection.on("CallAnswered", async (userId) => {
+                updateStatus(`${userId} aramayı kabul etti`);
+                await createOffer();
+            });
+
+            connection.on("ReceiveOffer", async (userId, offer) => {
+                updateStatus("Offer alındı, answer oluşturuluyor...");
+                targetUser = userId;
+                await handleOffer(offer);
+            });
+
+            connection.on("ReceiveAnswer", async (userId, answer) => {
+                updateStatus("Answer alındı, işleniyor...");
+                await handleAnswer(answer);
+            });
+
+            connection.on("ReceiveIceCandidate", async (userId, candidate) => {
+                await handleIceCandidate(candidate);
+            });
+
+            connection.on("CallEnded", (userId) => {
+                updateStatus("Arama sonlandırıldı");
+                cleanup();
+            });
+
+            try {
+                updateStatus("Sunucuya bağlanılıyor...");
+                await connection.start();
+                document.getElementById('userId').textContent = connection.connectionId;
+                document.getElementById('connectBtn').disabled = true;
+                document.getElementById('callBtn').disabled = false;
+                updateStatus("Hazır - Arama yapabilirsiniz");
+            } catch (err) {
+                updateStatus("Bağlantı hatası: " + err);
+            }
+        }
+
+        // DÜZENLENDİ: initLocalStream artık başarılı/başarısız durumunu döndürüyor
+        async function initLocalStream() {
+            try {
+                localStream = await navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: true
+                });
+                document.getElementById('localVideo').srcObject = localStream;
+                updateStatus("Kamera ve mikrofon hazır. Sunucuya bağlanabilirsiniz.");
+                return true; // Başarı
+            } catch (err) {
+                updateStatus("Medya erişim hatası: " + err);
+                alert("Kamera/mikrofon izni reddedildi veya bir hata oluştu. Lütfen sayfa ayarlarından izinleri kontrol edin.");
+                return false; // Hata
+            }
+        }
+
+        async function startCall() {
+            targetUser = document.getElementById('targetUserId').value;
+            if (!targetUser) {
+                alert("Lütfen hedef kullanıcı ID'si girin");
+                return;
+            }
+            
+            updateStatus(`${targetUser} aranıyor...`);
+            await connection.invoke("CallUser", targetUser);
+        }
+
+        async function createOffer() {
+            try {
+                if (!localStream) {
+                    updateStatus("❌ Kamera/Mikrofon olmadan offer oluşturulamaz!");
+                    return;
+                }
+
+                peerConnection = new RTCPeerConnection(config);
+                setupPeerConnection();
+
+                localStream.getTracks().forEach(track => {
+                    peerConnection.addTrack(track, localStream);
+                });
+
+                const offer = await peerConnection.createOffer();
+                await peerConnection.setLocalDescription(offer);
+                await connection.invoke("SendOffer", targetUser, JSON.stringify(offer));
+                updateStatus("Offer gönderildi - Answer bekleniyor...");
+            } catch (err) {
+                updateStatus("HATA: " + err.message);
+                console.error("createOffer hatası:", err);
+            }
+        }
+
+        async function handleOffer(offerJson) {
+            try {
+                updateStatus("Offer işleniyor...");
+                peerConnection = new RTCPeerConnection(config);
+                setupPeerConnection();
+
+                localStream.getTracks().forEach(track => {
+                    peerConnection.addTrack(track, localStream);
+                });
+
+                const offer = JSON.parse(offerJson);
+                await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+                updateStatus("Remote description set edildi");
+
+                const answer = await peerConnection.createAnswer();
+                await peerConnection.setLocalDescription(answer);
+                updateStatus("Local description set edildi");
+
+                await connection.invoke("SendAnswer", targetUser, JSON.stringify(answer));
+                updateStatus("Answer gönderildi - Bağlantı kuruluyor...");
+                document.getElementById('endBtn').disabled = false;
+            } catch (err) {
+                updateStatus("HATA: " + err.message);
+                console.error("handleOffer hatası:", err);
+            }
+        }
+
+        async function handleAnswer(answerJson) {
+            try {
+                const answer = JSON.parse(answerJson);
+                
+                if (!peerConnection) {
+                    console.error("HATA: peerConnection yok!");
+                    updateStatus("❌ HATA: PeerConnection mevcut değil!");
+                    return;
+                }
+                
+                await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+                updateStatus("✅ Answer alındı - Bağlantı kuruluyor...");
+                document.getElementById('endBtn').disabled = false;
+            } catch (err) {
+                updateStatus("❌ Answer işleme hatası: " + err.message);
+                console.error("handleAnswer hatası:", err);
+            }
+        }
+
+        async function handleIceCandidate(candidateJson) {
+            try {
+                const candidate = JSON.parse(candidateJson);
+                if (peerConnection && candidate) {
+                    await peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+                }
+            } catch(err){
+                console.error("ICE Candidate ekleme hatası:", err);
+            }
+        }
+
+        function setupPeerConnection() {
+            peerConnection.onicecandidate = async (event) => {
+                if (event.candidate) {
+                    await connection.invoke("SendIceCandidate", targetUser, JSON.stringify(event.candidate));
+                }
+            };
+
+            peerConnection.ontrack = (event) => {
+                document.getElementById('remoteVideo').srcObject = event.streams[0];
+                updateStatus("✅ Video akışı başladı!");
+            };
+
+            peerConnection.oniceconnectionstatechange = () => {
+                const state = peerConnection.iceConnectionState;
+                updateStatus(`ICE durumu: ${state}`);
+                
+                if (state === 'failed' || state === 'disconnected' || state === 'closed') {
+                    updateStatus("❌ Bağlantı koptu: " + state);
+                }
+            };
+        }
+
+        async function endCall() {
+            if (targetUser) {
+                await connection.invoke("EndCall", targetUser);
+            }
+            cleanup();
+        }
+
+        function cleanup() {
+            if (peerConnection) {
+                peerConnection.close();
+                peerConnection = null;
+            }
+            document.getElementById('remoteVideo').srcObject = null;
+            document.getElementById('endBtn').disabled = true;
+            document.getElementById('callBtn').disabled = false; // Tekrar arama yapabilmesi için
+            targetUser = null;
+            updateStatus("Arama sonlandırıldı. Yeni arama yapabilirsiniz.");
+        }
+
+        function updateStatus(message) {
+            document.getElementById('status').textContent = message;
+            console.log("STATUS:", message);
+        }
+    </script>
+</body>
+</html>
