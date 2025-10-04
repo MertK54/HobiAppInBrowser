@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Ps9WiluBx66klEXWXXcX7+mfVyGxKD9I+SfciWdPFGE=",
+  "Hash": "a28xM6rHx09ssWvi1OXAKL88qWykzgkpzDkoOYu/h6w=",
   "Source": "Backend",
   "BasePath": "_content/Backend",
   "Mode": "Default",
@@ -10,38 +10,38 @@
     {
       "Name": "Backend\\wwwroot",
       "Source": "Backend",
-      "ContentRoot": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\HobiAppDeneme4\\backend\\wwwroot\\",
       "BasePath": "_content/Backend",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\obj\\Debug\\net9.0\\compressed\\for7mogo9r-81gvk9yp23.gz",
+      "Identity": "C:\\HobiAppDeneme4\\backend\\obj\\Debug\\net9.0\\compressed\\for7mogo9r-tralfkvt13.gz",
       "SourceId": "Backend",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\HobiAppDeneme4\\backend\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/Backend",
-      "RelativePath": "index#[.{fingerprint=81gvk9yp23}]?.html.gz",
+      "RelativePath": "index#[.{fingerprint=tralfkvt13}]?.html.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\wwwroot\\index.html",
+      "RelatedAsset": "C:\\HobiAppDeneme4\\backend\\wwwroot\\index.html",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "mtzqkbu4cg",
-      "Integrity": "JkgeqymfLGidH+9nzlPo2G+c2cxwgsQ76Elx5TQ1Gh8=",
+      "Fingerprint": "akg8dzn3vh",
+      "Integrity": "2s6/H+c+DpxusmZxAAtI3eCcUkBw00rRrNQlrh60J+k=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\wwwroot\\index.html"
+      "OriginalItemSpec": "C:\\HobiAppDeneme4\\backend\\wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\wwwroot\\index.html",
+      "Identity": "C:\\HobiAppDeneme4\\backend\\wwwroot\\index.html",
       "SourceId": "Backend",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\wwwroot\\",
+      "ContentRoot": "C:\\HobiAppDeneme4\\backend\\wwwroot\\",
       "BasePath": "_content/Backend",
       "RelativePath": "index#[.{fingerprint}]?.html",
       "AssetKind": "All",
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "81gvk9yp23",
-      "Integrity": "FOW2kGnwawCysCTOXZA+Ozm5Tt6QfoHIW4DiVF/oUb8=",
+      "Fingerprint": "tralfkvt13",
+      "Integrity": "yZhxcwh4SEh/4wiC5/jXbFDtSwn7aoHiWR5YAUcs+jk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
@@ -61,13 +61,13 @@
   ],
   "Endpoints": [
     {
-      "Route": "index.81gvk9yp23.html",
-      "AssetFile": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\obj\\Debug\\net9.0\\compressed\\for7mogo9r-81gvk9yp23.gz",
+      "Route": "index.html",
+      "AssetFile": "C:\\HobiAppDeneme4\\backend\\obj\\Debug\\net9.0\\compressed\\for7mogo9r-tralfkvt13.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000323101777"
+          "Quality": "0.000320102433"
         }
       ],
       "ResponseHeaders": [
@@ -77,15 +77,152 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3094"
+          "Value": "3123"
         },
         {
           "Name": "ETag",
-          "Value": "\"JkgeqymfLGidH+9nzlPo2G+c2cxwgsQ76Elx5TQ1Gh8=\""
+          "Value": "\"2s6/H+c+DpxusmZxAAtI3eCcUkBw00rRrNQlrh60J+k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 03 Oct 2025 15:53:52 GMT"
+          "Value": "Fri, 03 Oct 2025 16:16:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"yZhxcwh4SEh/4wiC5/jXbFDtSwn7aoHiWR5YAUcs+jk=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yZhxcwh4SEh/4wiC5/jXbFDtSwn7aoHiWR5YAUcs+jk="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "C:\\HobiAppDeneme4\\backend\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12907"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yZhxcwh4SEh/4wiC5/jXbFDtSwn7aoHiWR5YAUcs+jk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 03 Oct 2025 16:16:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yZhxcwh4SEh/4wiC5/jXbFDtSwn7aoHiWR5YAUcs+jk="
+        }
+      ]
+    },
+    {
+      "Route": "index.html.gz",
+      "AssetFile": "C:\\HobiAppDeneme4\\backend\\obj\\Debug\\net9.0\\compressed\\for7mogo9r-tralfkvt13.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3123"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2s6/H+c+DpxusmZxAAtI3eCcUkBw00rRrNQlrh60J+k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 03 Oct 2025 16:16:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2s6/H+c+DpxusmZxAAtI3eCcUkBw00rRrNQlrh60J+k="
+        }
+      ]
+    },
+    {
+      "Route": "index.tralfkvt13.html",
+      "AssetFile": "C:\\HobiAppDeneme4\\backend\\obj\\Debug\\net9.0\\compressed\\for7mogo9r-tralfkvt13.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000320102433"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3123"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2s6/H+c+DpxusmZxAAtI3eCcUkBw00rRrNQlrh60J+k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 03 Oct 2025 16:16:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -105,13 +242,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"FOW2kGnwawCysCTOXZA+Ozm5Tt6QfoHIW4DiVF/oUb8=\""
+          "Value": "W/\"yZhxcwh4SEh/4wiC5/jXbFDtSwn7aoHiWR5YAUcs+jk=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "81gvk9yp23"
+          "Value": "tralfkvt13"
         },
         {
           "Name": "label",
@@ -119,13 +256,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-FOW2kGnwawCysCTOXZA+Ozm5Tt6QfoHIW4DiVF/oUb8="
+          "Value": "sha256-yZhxcwh4SEh/4wiC5/jXbFDtSwn7aoHiWR5YAUcs+jk="
         }
       ]
     },
     {
-      "Route": "index.81gvk9yp23.html",
-      "AssetFile": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\wwwroot\\index.html",
+      "Route": "index.tralfkvt13.html",
+      "AssetFile": "C:\\HobiAppDeneme4\\backend\\wwwroot\\index.html",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -134,7 +271,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "13085"
+          "Value": "12907"
         },
         {
           "Name": "Content-Type",
@@ -142,11 +279,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"FOW2kGnwawCysCTOXZA+Ozm5Tt6QfoHIW4DiVF/oUb8=\""
+          "Value": "\"yZhxcwh4SEh/4wiC5/jXbFDtSwn7aoHiWR5YAUcs+jk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 03 Oct 2025 15:53:52 GMT"
+          "Value": "Fri, 03 Oct 2025 16:16:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -156,7 +293,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "81gvk9yp23"
+          "Value": "tralfkvt13"
         },
         {
           "Name": "label",
@@ -164,13 +301,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-FOW2kGnwawCysCTOXZA+Ozm5Tt6QfoHIW4DiVF/oUb8="
+          "Value": "sha256-yZhxcwh4SEh/4wiC5/jXbFDtSwn7aoHiWR5YAUcs+jk="
         }
       ]
     },
     {
-      "Route": "index.81gvk9yp23.html.gz",
-      "AssetFile": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\obj\\Debug\\net9.0\\compressed\\for7mogo9r-81gvk9yp23.gz",
+      "Route": "index.tralfkvt13.html.gz",
+      "AssetFile": "C:\\HobiAppDeneme4\\backend\\obj\\Debug\\net9.0\\compressed\\for7mogo9r-tralfkvt13.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -179,7 +316,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3094"
+          "Value": "3123"
         },
         {
           "Name": "Content-Type",
@@ -187,11 +324,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JkgeqymfLGidH+9nzlPo2G+c2cxwgsQ76Elx5TQ1Gh8=\""
+          "Value": "\"2s6/H+c+DpxusmZxAAtI3eCcUkBw00rRrNQlrh60J+k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 03 Oct 2025 15:53:52 GMT"
+          "Value": "Fri, 03 Oct 2025 16:16:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -209,7 +346,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "81gvk9yp23"
+          "Value": "tralfkvt13"
         },
         {
           "Name": "label",
@@ -217,144 +354,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-JkgeqymfLGidH+9nzlPo2G+c2cxwgsQ76Elx5TQ1Gh8="
-        }
-      ]
-    },
-    {
-      "Route": "index.html",
-      "AssetFile": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\obj\\Debug\\net9.0\\compressed\\for7mogo9r-81gvk9yp23.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000323101777"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "3094"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"JkgeqymfLGidH+9nzlPo2G+c2cxwgsQ76Elx5TQ1Gh8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 03 Oct 2025 15:53:52 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"FOW2kGnwawCysCTOXZA+Ozm5Tt6QfoHIW4DiVF/oUb8=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-FOW2kGnwawCysCTOXZA+Ozm5Tt6QfoHIW4DiVF/oUb8="
-        }
-      ]
-    },
-    {
-      "Route": "index.html",
-      "AssetFile": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\wwwroot\\index.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "13085"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"FOW2kGnwawCysCTOXZA+Ozm5Tt6QfoHIW4DiVF/oUb8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 03 Oct 2025 15:53:52 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-FOW2kGnwawCysCTOXZA+Ozm5Tt6QfoHIW4DiVF/oUb8="
-        }
-      ]
-    },
-    {
-      "Route": "index.html.gz",
-      "AssetFile": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\obj\\Debug\\net9.0\\compressed\\for7mogo9r-81gvk9yp23.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "3094"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"JkgeqymfLGidH+9nzlPo2G+c2cxwgsQ76Elx5TQ1Gh8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 03 Oct 2025 15:53:52 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-JkgeqymfLGidH+9nzlPo2G+c2cxwgsQ76Elx5TQ1Gh8="
+          "Value": "sha256-2s6/H+c+DpxusmZxAAtI3eCcUkBw00rRrNQlrh60J+k="
         }
       ]
     }

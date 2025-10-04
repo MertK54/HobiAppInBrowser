@@ -810,11 +810,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\Backend.csproj",
+      "projectUniqueName": "C:\\HobiAppDeneme4\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\Backend.csproj",
+      "projectPath": "C:\\HobiAppDeneme4\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\kezer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kezer\\Documents\\HobiAppDeneme4\\backend\\obj\\",
+      "outputPath": "C:\\HobiAppDeneme4\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\DevExpress 24.2\\Components\\Offline Packages",
