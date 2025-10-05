@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TC18tQurkDY=",
+  "dgSpecHash": "rCvaHZm2INg=",
   "success": true,
-  "projectFilePath": "C:\\HobiAppDeneme4\\backend\\Backend.csproj",
+  "projectFilePath": "C:\\HobiAppDeneme4\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kezer\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\9.0.9\\microsoft.aspnetcore.connections.abstractions.9.0.9.nupkg.sha512",
     "C:\\Users\\kezer\\.nuget\\packages\\microsoft.aspnetcore.http.connections.client\\9.0.9\\microsoft.aspnetcore.http.connections.client.9.0.9.nupkg.sha512",
